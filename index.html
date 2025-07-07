@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeafThing - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --text-color: #333;
-            --light-text-color: #666;
-            --background-color: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --card-background: rgba(255, 255, 255, 0.95);
-            --section-background: rgba(102, 126, 234, 0.05);
-            --border-radius: 15px;
-            --box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            
+            --background-color: #1a1a1a; 
+            --text-color: #e0e0e0; 
+            --primary-accent: #6699ff; 
+            --secondary-accent: #99ff99; 
+            --error-color: #ffcc00; 
+            --card-background: #2a2a2a; 
+            --border-color: #3a3a3a; 
+            --glow-effect: 0 0 2px var(--primary-accent), 0 0 4px var(--primary-accent); 
+            --subtle-shadow: rgba(0, 0, 0, 0.4); 
+
+            --font-family: 'JetBrains Mono', monospace; 
+            --border-radius: 4px; 
+            --transition: all 0.2s ease-in-out;
         }
 
         * {
@@ -25,156 +30,216 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
+            font-family: var(--font-family);
+            line-height: 1.5;
             color: var(--text-color);
-            background: var(--background-color);
+            background-color: var(--background-color);
             min-height: 100vh;
             padding: 20px;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
-            background: var(--card-background);
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
-            padding: 40px;
-            box-shadow: var(--box-shadow);
-            backdrop-filter: blur(10px);
+            padding: 30px;
+            box-shadow: 0 0 15px var(--subtle-shadow); 
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 20px;
+            text-align: left; 
+            margin-bottom: 30px;
+            border-bottom: 1px dashed var(--border-color); 
+            padding-bottom: 15px;
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
         }
 
         .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 4px solid var(--primary-color);
-            margin: 0 auto 20px;
-            display: block;
+            display: block; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            border: 2px solid var(--primary-accent); 
             object-fit: cover;
-            box-shadow: var(--box-shadow);
-            transition: transform var(--transition);
+            flex-shrink: 0; 
         }
 
-        .profile-picture:hover {
-            transform: scale(1.05);
+        .header-content { 
+            display: flex;
+            flex-direction: column;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
+            font-size: 2.2em;
+            color: var(--primary-accent); 
+            margin-bottom: 5px;
+            text-shadow: var(--glow-effect); 
         }
 
         .header p {
-            font-size: 1.2em;
-            color: var(--light-text-color);
-            font-style: italic;
+            font-size: 1em;
+            color: var(--secondary-accent); 
+            font-style: normal; 
+            padding-left: 0; 
         }
 
         .section {
-            margin: 30px 0;
+            margin: 25px 0;
             padding: 20px;
-            background: var(--section-background);
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--primary-accent); 
             border-radius: var(--border-radius);
-            border-left: 4px solid var(--primary-color);
+            position: relative; 
+        }
+
+        .section::before {
+            content: '$ '; 
+            color: var(--primary-accent);
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            font-weight: bold;
         }
 
         .section h2 {
-            color: var(--secondary-color);
+            color: var(--secondary-accent); 
             margin-bottom: 15px;
-            font-size: 1.8em;
+            font-size: 1.6em;
+            padding-left: 20px; 
         }
 
         .section p, .section li {
-            font-size: 1.1em;
-            margin-bottom: 8px;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+            padding-left: 20px; 
         }
 
         .section ul {
+            list-style: none; 
             margin-left: 20px;
         }
 
+        .section ul li::before {
+            content: '- '; 
+            color: var(--primary-accent);
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
         .highlight {
-            background: linear-gradient(120deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-accent);
             font-weight: bold;
+            text-shadow: 0 0 1px var(--primary-accent); 
         }
 
         .facts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
             margin-top: 15px;
+            padding-left: 20px; 
         }
 
         .fact-card {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 15px;
+            background-color: var(--background-color);
+            padding: 12px;
             border-radius: var(--border-radius);
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 1px dashed var(--border-color); 
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+
+        .fact-card strong {
+            color: var(--secondary-accent);
+            display: block; 
+            margin-bottom: 3px;
         }
 
         .birthday-countdown {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
-            padding: 15px;
+            padding: 12px;
             border-radius: var(--border-radius);
             text-align: center;
             margin-top: 15px;
             font-weight: bold;
+            border: 2px solid;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, var(--countdown-color-1), var(--countdown-color-2));
+            color: var(--background-color);
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
         }
 
         .footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary-color);
-            color: var(--light-text-color);
-            font-style: italic;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color); 
+            color: var(--secondary-accent);
+            font-style: normal; 
+            font-size: 0.9em;
         }
 
         .redirect-link {
             display: inline-block;
-            margin-top: 10px;
-            color: var(--primary-color);
+            margin-top: 8px;
+            color: var(--primary-accent);
             text-decoration: none;
             font-weight: bold;
             transition: color var(--transition);
+            border-bottom: 1px dotted var(--primary-accent); 
+            padding-bottom: 2px;
         }
 
         .redirect-link:hover {
-            color: var(--secondary-color);
+            color: var(--secondary-accent);
+            border-bottom-color: var(--secondary-accent);
         }
 
         .timer {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px;
+            background-color: var(--background-color);
+            color: var(--primary-accent);
+            padding: 12px;
             border-radius: var(--border-radius);
             text-align: center;
             margin-top: 15px;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            text-shadow: var(--glow-effect);
+            border: 1px solid var(--primary-accent);
+            padding-left: 20px; 
         }
 
         @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
             .container {
-                padding: 20px;
+                padding: 15px;
             }
-
+            .header {
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px;
+            }
+            .header-content {
+                text-align: left;
+            }
             .header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
-
+            .section h2 {
+                font-size: 1.4em;
+            }
             .facts-grid {
                 grid-template-columns: 1fr;
             }
@@ -185,22 +250,36 @@
     <div class="container">
         <div class="header">
             <img src="images/profile.png" alt="DeafThing's Profile Picture" class="profile-picture">
-            <h1>DeafThing</h1>
-            <p>Builder of random things • Reader • Dreamer</p>
+            <div class="header-content">
+                <h1>DeafThing</h1>
+                <p>> Builder of random things • Reader • Dreamer</p>
+            </div>
         </div>
+
 
         <div class="section">
             <h2>About Me</h2>
-            <p>Hey there! I'm <span class="highlight">DeafThing</span>, a 20-year-old who loves building random things and getting lost in good books. I use any pronouns, so feel free to use whatever feels right to you. I am already down to like 12 safe foods, I used to have almost 40 but over time ARFID has made it impossible to see once safe foods as safe because of a single bad experience with each of them.</p>
-            <div class="birthday-countdown">
-                🎂 My birthday is July 20th!
+            <p>Hey there! I'm <span class="highlight">DeafThing</span>, a <span id="age">20</span>-year-old who loves building random things and getting lost in good books.</p>
+            <div class="birthday-countdown" id="birthday-countdown">
+                🎂 Calculating birthday countdown...
             </div>
         </div>
+
+
+        <div class="section">
+            <h2>Identity & Orientation</h2>
+            <p><strong>Gender:</strong> Agender (any pronouns work!)</p>
+            <p><strong>Orientation:</strong> Aromantic & Asexual</p>
+            <p><strong>Boundaries:</strong> Sex-repulsed and romance-repulsed. Not looking for any type of relationship - please keep interactions casual and respectful.</p>
+            <p><strong>Current situation:</strong> Dealing with some challenging family dynamics, so I'm keeping to myself and focusing on my own well-being.</p>
+        </div>
+
 
         <div class="section">
             <h2>Current Time (UTC-4)</h2>
             <div class="timer" id="timer">Loading...</div>
         </div>
+
 
         <div class="section">
             <h2>What I Love</h2>
@@ -208,12 +287,13 @@
             <p><strong>Favorite Genre:</strong> Slice of life manga - there's something magical about the quiet, everyday moments in these stories.</p>
         </div>
 
+
         <div class="section">
             <h2>About My Mind & Body</h2>
             <div class="facts-grid">
                 <div class="fact-card">
                     <strong>Neurodivergent</strong><br>
-                    Diagnosed with Type 2 Autism
+                    Diagnosed with Level 2 ASD in both aspects of social and repetitive behaviour
                 </div>
                 <div class="fact-card">
                     <strong>Deaf Community</strong><br>
@@ -234,6 +314,7 @@
             </div>
         </div>
 
+
         <div class="section">
             <h2>Food & ARFID</h2>
             <p><strong>Safe Foods (my go-to comfort foods):</strong></p>
@@ -245,13 +326,9 @@
                 <li>Milk</li>
                 <li>...and a few more I can't remember!</li>
             </ul>
-            <p><strong>Unsafe Foods:</strong> Pretty much anything that neurotypical people consider "normal" food - like steak, burgers, salads, etc. ARFID makes eating an impossible battle with my brain that I will eventually lose and lose every safe food!</p>
+            <p><strong>Unsafe Foods:</strong> Pretty much anything that neurotypical people consider "normal" food - like steak, burgers, salads, etc. ARFID makes eating an impossible battle with my brain that I will eventually lose and lose every safe food. I am already down to like 12 safe foods, I used to have almost 40 but over time ARFID has made it impossible to see once safe foods as safe because of a single bad experience with each of them.</p>
         </div>
 
-        <div class="section">
-            <h2>What I'm Building</h2>
-            <p>I love creating random projects and experimenting with new ideas. Whether it's code, art, or just weird little experiments, I'm always tinkering with something. This portfolio itself is one of those random things I've built!</p>
-        </div>
 
         <div class="section">
             <h2>Links</h2>
@@ -267,11 +344,30 @@
     </div>
 
     <script>
+        function updateAge() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth(); // 0-indexed
+            const currentDay = now.getDate();
+            
+            // Birth year (assuming you're currently 20 and it's 2025)
+            const birthYear = 2004;
+            
+            let age = currentYear - birthYear;
+            
+            // If birthday hasn't happened yet this year, subtract 1
+            if (currentMonth < 6 || (currentMonth === 6 && currentDay < 20)) { // July 20th = month 6, day 20
+                age--;
+            }
+            
+            document.getElementById('age').textContent = age;
+        }
+
         function updateTimer() {
             const now = new Date();
             const options = {
                 timeZone: 'America/New_York',
-                hour12: false, // Use 24-hour format
+                hour12: false,
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
@@ -280,8 +376,59 @@
             document.getElementById('timer').textContent = timeString;
         }
 
+        function updateBirthdayCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            // July 20th of current year
+            let birthday = new Date(currentYear, 6, 20); // Month is 0-indexed
+            
+            // If birthday has passed this year, use next year's birthday
+            if (now > birthday) {
+                birthday = new Date(currentYear + 1, 6, 20);
+            }
+            
+            const timeDiff = birthday - now;
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            // Calculate color based on days remaining (365 days = red, 0 days = green)
+            const maxDays = 365;
+            const progress = Math.max(0, Math.min(1, (maxDays - days) / maxDays));
+            
+            // Color interpolation from red to green
+            const red = Math.floor(255 * (1 - progress));
+            const green = Math.floor(255 * progress);
+            const blue = 0;
+            
+            // Create gradient colors
+            const color1 = `rgb(${red}, ${green}, ${blue})`;
+            const color2 = `rgb(${Math.floor(red * 0.8)}, ${Math.floor(green * 0.8)}, ${blue})`;
+            
+            // Update CSS custom properties
+            document.documentElement.style.setProperty('--countdown-color-1', color1);
+            document.documentElement.style.setProperty('--countdown-color-2', color2);
+            
+            const countdownElement = document.getElementById('birthday-countdown');
+            countdownElement.style.borderColor = color1;
+            
+            // Update countdown text
+            if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+                countdownElement.textContent = '🎉 Happy Birthday! 🎉';
+            } else if (days === 0) {
+                countdownElement.textContent = `🎂 Birthday in ${hours}h ${minutes}m ${seconds}s!`;
+            } else {
+                countdownElement.textContent = `🎂 Birthday in ${days} days, ${hours}h ${minutes}m ${seconds}s!`;
+            }
+        }
+
         setInterval(updateTimer, 1000);
-        updateTimer(); // Initial call to display the time immediately
+        setInterval(updateBirthdayCountdown, 1000);
+        updateAge();
+        updateTimer();
+        updateBirthdayCountdown();
     </script>
 </body>
 </html>
