@@ -219,6 +219,30 @@
             padding-left: 20px; 
         }
 
+        .error-section {
+            border-left: 3px solid #ff0000;
+            background-color: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-left: 3px solid #ff0000;
+            border-radius: var(--border-radius);
+        }
+
+        .error-section::before {
+            content: '! ';
+            color: #ff0000;
+        }
+
+        .error-section h2 {
+            color: #ff0000;
+            text-shadow: 0 0 2px #ff0000;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 0 0 1px #ff0000;
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -256,6 +280,10 @@
             </div>
         </div>
 
+        <div class="section error-section">
+            <h2>⚠️ Discord Account Notice</h2>
+            <p class="error-message">My Discord account has been disabled by Discord for alleged spamming violations. As a result, I am discontinuing all Discord-related projects, including any plugins I previously edited or made for Aliucord. I will probably never see any one of you again, so good luck in any endeavour you seeing this might go through.</p>
+        </div>
 
         <div class="section">
             <h2>About Me</h2>
@@ -265,7 +293,6 @@
             </div>
         </div>
 
-
         <div class="section">
             <h2>Identity & Orientation</h2>
             <p><strong>Gender:</strong> Agender (any pronouns work!)</p>
@@ -274,19 +301,16 @@
             <p><strong>Current situation:</strong> Dealing with some challenging family dynamics, so I'm keeping to myself and focusing on my own well-being.</p>
         </div>
 
-
         <div class="section">
             <h2>Current Time (UTC-4)</h2>
             <div class="timer" id="timer">Loading...</div>
         </div>
-
 
         <div class="section">
             <h2>What I Love</h2>
             <p><strong>Hobbies:</strong> Reading (especially slice of life manga!), sleeping, and building random creative projects.</p>
             <p><strong>Favorite Genre:</strong> Slice of life manga - there's something magical about the quiet, everyday moments in these stories.</p>
         </div>
-
 
         <div class="section">
             <h2>About My Mind & Body</h2>
@@ -314,7 +338,6 @@
             </div>
         </div>
 
-
         <div class="section">
             <h2>Food & ARFID</h2>
             <p><strong>Safe Foods (my go-to comfort foods):</strong></p>
@@ -328,7 +351,6 @@
             </ul>
             <p><strong>Unsafe Foods:</strong> Pretty much anything that neurotypical people consider "normal" food - like steak, burgers, salads, etc. ARFID makes eating an impossible battle with my brain that I will eventually lose and lose every safe food. I am already down to like 12 safe foods, I used to have almost 40 but over time ARFID has made it impossible to see once safe foods as safe because of a single bad experience with each of them.</p>
         </div>
-
 
         <div class="section">
             <h2>Links</h2>
