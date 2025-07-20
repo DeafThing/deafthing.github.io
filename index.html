@@ -1,456 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeafThing - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            
-            --background-color: #1a1a1a; 
-            --text-color: #e0e0e0; 
-            --primary-accent: #6699ff; 
-            --secondary-accent: #99ff99; 
-            --error-color: #ffcc00; 
-            --card-background: #2a2a2a; 
-            --border-color: #3a3a3a; 
-            --glow-effect: 0 0 2px var(--primary-accent), 0 0 4px var(--primary-accent); 
-            --subtle-shadow: rgba(0, 0, 0, 0.4); 
-
-            --font-family: 'JetBrains Mono', monospace; 
-            --border-radius: 4px; 
-            --transition: all 0.2s ease-in-out;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            line-height: 1.5;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: 0 0 15px var(--subtle-shadow); 
-        }
-
-        .header {
-            text-align: left; 
-            margin-bottom: 30px;
-            border-bottom: 1px dashed var(--border-color); 
-            padding-bottom: 15px;
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
-        }
-
-        .profile-picture {
-            display: block; 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50%; 
-            border: 2px solid var(--primary-accent); 
-            object-fit: cover;
-            flex-shrink: 0; 
-        }
-
-        .header-content { 
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header h1 {
-            font-size: 2.2em;
-            color: var(--primary-accent); 
-            margin-bottom: 5px;
-            text-shadow: var(--glow-effect); 
-        }
-
-        .header p {
-            font-size: 1em;
-            color: var(--secondary-accent); 
-            font-style: normal; 
-            padding-left: 0; 
-        }
-
-        .section {
-            margin: 25px 0;
-            padding: 20px;
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--primary-accent); 
-            border-radius: var(--border-radius);
-            position: relative; 
-        }
-
-        .section::before {
-            content: '$ '; 
-            color: var(--primary-accent);
-            position: absolute;
-            left: 5px;
-            top: 5px;
-            font-weight: bold;
-        }
-
-        .section h2 {
-            color: var(--secondary-accent); 
-            margin-bottom: 15px;
-            font-size: 1.6em;
-            padding-left: 20px; 
-        }
-
-        .section p, .section li {
-            font-size: 0.95em;
-            margin-bottom: 6px;
-            padding-left: 20px; 
-        }
-
-        .section ul {
-            list-style: none; 
-            margin-left: 20px;
-        }
-
-        .section ul li::before {
-            content: '- '; 
-            color: var(--primary-accent);
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        .highlight {
-            color: var(--primary-accent);
-            font-weight: bold;
-            text-shadow: 0 0 1px var(--primary-accent); 
-        }
-
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
-            padding-left: 20px; 
-        }
-
-        .fact-card {
-            background-color: var(--background-color);
-            padding: 12px;
-            border-radius: var(--border-radius);
-            border: 1px dashed var(--border-color); 
-            font-size: 0.9em;
-            color: var(--text-color);
-        }
-
-        .fact-card strong {
-            color: var(--secondary-accent);
-            display: block; 
-            margin-bottom: 3px;
-        }
-
-        .birthday-countdown {
-            padding: 12px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            margin-top: 15px;
-            font-weight: bold;
-            border: 2px solid;
-            padding-left: 20px;
-            transition: all 0.3s ease;
-            background: linear-gradient(45deg, var(--countdown-color-1), var(--countdown-color-2));
-            color: var(--background-color);
-            text-shadow: 0 0 2px rgba(0,0,0,0.5);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px dashed var(--border-color); 
-            color: var(--secondary-accent);
-            font-style: normal; 
-            font-size: 0.9em;
-        }
-
-        .redirect-link {
-            display: inline-block;
-            margin-top: 8px;
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color var(--transition);
-            border-bottom: 1px dotted var(--primary-accent); 
-            padding-bottom: 2px;
-        }
-
-        .redirect-link:hover {
-            color: var(--secondary-accent);
-            border-bottom-color: var(--secondary-accent);
-        }
-
-        .timer {
-            background-color: var(--background-color);
-            color: var(--primary-accent);
-            padding: 12px;
-            border-radius: var(--border-radius);
-            text-align: center;
-            margin-top: 15px;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-shadow: var(--glow-effect);
-            border: 1px solid var(--primary-accent);
-            padding-left: 20px; 
-        }
-
-        .error-section {
-            border-left: 3px solid #ff0000;
-            background-color: rgba(255, 0, 0, 0.15);
-            border: 1px solid rgba(255, 0, 0, 0.5);
-            border-left: 3px solid #ff0000;
-            border-radius: var(--border-radius);
-        }
-
-        .error-section::before {
-            content: '! ';
-            color: #ff0000;
-        }
-
-        .error-section h2 {
-            color: #ff0000;
-            text-shadow: 0 0 2px #ff0000;
-        }
-
-        .error-message {
-            color: #ff0000;
-            font-weight: bold;
-            text-shadow: 0 0 1px #ff0000;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                padding: 15px;
-            }
-            .header {
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 10px;
-            }
-            .header-content {
-                text-align: left;
-            }
-            .header h1 {
-                font-size: 1.8em;
-            }
-            .section h2 {
-                font-size: 1.4em;
-            }
-            .facts-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About DeafThing</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="images/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="images/android-chrome-512x512.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <img src="images/profile.png" alt="DeafThing's Profile Picture" class="profile-picture">
-            <div class="header-content">
-                <h1>DeafThing</h1>
-                <p>> Builder of random things • Reader • Dreamer</p>
-            </div>
+      <div class="header">
+        <img
+          src="images/profile.png"
+          alt="DeafThing's Profile Picture"
+          class="profile-picture"
+        />
+        <div class="header-content">
+          <h1>DeafThing</h1>
+          <p>> Builder of random things • Reader • Dreamer</p>
         </div>
+      </div>
 
-        <div class="section error-section">
-            <h2>⚠️ Discord Account Notice</h2>
-            <p class="error-message">My Discord account has been disabled by Discord for alleged spamming violations. As a result, I am discontinuing all Discord-related projects, including any plugins I previously edited or made for Aliucord. I will probably never see any one of you again, so good luck in any endeavour you seeing this might go through.</p>
-        </div>
+      <div class="section error-section">
+        <h2>⚠️ Discord Account Notice</h2>
+        <p class="error-message">
+          My Discord account has been disabled by Discord for alleged spamming
+          violations. As a result, I am discontinuing all Discord-related
+          projects, including any plugins I previously edited or made for
+          Aliucord, and deleting all clients I have and never returning to
+          Discord. I will probably never see any one of you again, so good luck
+          in any endeavour you seeing this might go through.
+        </p>
+      </div>
 
-        <div class="section">
-            <h2>About Me</h2>
-            <p>Hey there! I'm <span class="highlight">DeafThing</span>, a <span id="age">20</span>-year-old who loves building random things and getting lost in good books.</p>
-            <div class="birthday-countdown" id="birthday-countdown">
-                🎂 Calculating birthday countdown...
-            </div>
+      <div class="section">
+        <h2>About Me</h2>
+        <p>
+          Hey there! I'm <span class="highlight">DeafThing</span>, a
+          <span id="age">20</span>-year-old who loves building random things and
+          getting lost in good books.
+        </p>
+        <div class="birthday-countdown" id="birthday-countdown">
+          🎂 Calculating birthday countdown...
         </div>
+      </div>
 
-        <div class="section">
-            <h2>Identity & Orientation</h2>
-            <p><strong>Gender:</strong> Agender (any pronouns work!)</p>
-            <p><strong>Orientation:</strong> Aromantic & Asexual</p>
-            <p><strong>Boundaries:</strong> Sex-repulsed and romance-repulsed. Not looking for any type of relationship - please keep interactions casual and respectful.</p>
-            <p><strong>Current situation:</strong> Dealing with some challenging family dynamics, so I'm keeping to myself and focusing on my own well-being.</p>
-        </div>
+      <div class="section">
+        <h2>Identity & Orientation</h2>
+        <p><strong>Gender:</strong> Agender (any pronouns work!)</p>
+        <p><strong>Orientation:</strong> Aromantic & Asexual</p>
+        <p>
+          <strong>Boundaries:</strong> Sex-repulsed and romance-repulsed. Not
+          looking for any type of relationship - please keep interactions casual
+          and respectful.
+        </p>
+        <p>
+          <strong>Current situation:</strong> Dealing with some challenging
+          family dynamics, so I'm keeping to myself and focusing on my own
+          well-being.
+        </p>
+      </div>
 
-        <div class="section">
-            <h2>Current Time (UTC-4)</h2>
-            <div class="timer" id="timer">Loading...</div>
-        </div>
+      <div class="section">
+        <h2>Current Time (UTC-4)</h2>
+        <div class="timer" id="timer">Loading...</div>
+      </div>
 
-        <div class="section">
-            <h2>What I Love</h2>
-            <p><strong>Hobbies:</strong> Reading (especially slice of life manga!), sleeping, and building random creative projects.</p>
-            <p><strong>Favorite Genre:</strong> Slice of life manga - there's something magical about the quiet, everyday moments in these stories.</p>
-        </div>
+      <div class="section">
+        <h2>What I Love</h2>
+        <p>
+          <strong>Hobbies:</strong> Reading,
+          sleeping, and building random creative projects.
+        </p>
+        <p>
+          <strong>Favorite Genre:</strong> Slice of life manga - there's
+          something magical about the quiet, everyday moments in these stories.
+        </p>
+      </div>
 
-        <div class="section">
-            <h2>About My Mind & Body</h2>
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <strong>Neurodivergent</strong><br>
-                    Diagnosed with Level 2 ASD in both aspects of social and repetitive behaviour
-                </div>
-                <div class="fact-card">
-                    <strong>Deaf Community</strong><br>
-                    Fully deaf since birth
-                </div>
-                <div class="fact-card">
-                    <strong>Color Vision</strong><br>
-                    Deuteranopia colorblind (no green cones)
-                </div>
-                <div class="fact-card">
-                    <strong>ARFID</strong><br>
-                    Avoidant/Restrictive Food Intake Disorder
-                </div>
-                <div class="fact-card">
-                    <strong>Bipolar</strong><br>
-                    Type 1 Bipolar Disorder
-                </div>
-            </div>
+      <div class="section">
+        <h2>About My Mind & Body</h2>
+        <div class="facts-grid">
+          <div class="fact-card">
+            <strong>Neurodivergent</strong><br />
+            Diagnosed with Level 2 ASD in both aspects of social and repetitive
+            behaviour
+          </div>
+          <div class="fact-card">
+            <strong>Deaf Community</strong><br />
+            Fully deaf since birth
+          </div>
+          <div class="fact-card">
+            <strong>Color Vision</strong><br />
+            Deuteranopia colorblind (no green cones)
+          </div>
+          <div class="fact-card">
+            <strong>ARFID</strong><br />
+            Avoidant/Restrictive Food Intake Disorder
+          </div>
+          <div class="fact-card">
+            <strong>Bipolar</strong><br />
+            Type 1 Bipolar Disorder
+          </div>
         </div>
+      </div>
 
-        <div class="section">
-            <h2>Food & ARFID</h2>
-            <p><strong>Safe Foods (my go-to comfort foods):</strong></p>
-            <ul>
-                <li>Reese's Cups</li>
-                <li>Golden Double Stuf Oreos</li>
-                <li>Banana popsicles</li>
-                <li>Apple juice</li>
-                <li>Milk</li>
-                <li>...and a few more I can't remember!</li>
-            </ul>
-            <p><strong>Unsafe Foods:</strong> Pretty much anything that neurotypical people consider "normal" food - like steak, burgers, salads, etc. ARFID makes eating an impossible battle with my brain that I will eventually lose and lose every safe food. I am already down to like 12 safe foods, I used to have almost 40 but over time ARFID has made it impossible to see once safe foods as safe because of a single bad experience with each of them.</p>
-        </div>
+      <div class="section">
+        <h2>Food & ARFID</h2>
+        <p><strong>Safe Foods (my go-to comfort foods):</strong></p>
+        <ul>
+          <li>Reese's Cups</li>
+          <li>Golden Double Stuf Oreos</li>
+          <li>Banana popsicles</li>
+          <li>Apple juice</li>
+          <li>Milk</li>
+          <li>...and a few more I can't remember!</li>
+        </ul>
+        <p>
+          <strong>Unsafe Foods:</strong> Pretty much anything that neurotypical
+          people consider "normal" food - like steak, burgers, salads, etc.
+          ARFID makes eating an impossible battle with my brain that I will
+          eventually lose and lose every safe food. I am already down to like 12
+          safe foods, I used to have almost 40 but over time ARFID has made it
+          impossible to see once safe foods as safe because of a single bad
+          experience with each of them.
+        </p>
+      </div>
 
-        <div class="section">
-            <h2>Links</h2>
-            <p>Check out my other profiles:</p>
-            <p><a href="#" class="redirect-link" onclick="window.location.href='https://deafthing.github.io/pronouns'">Pronouns Page</a></p>
-            <p><a href="#" class="redirect-link" onclick="window.location.href='https://deafthing.github.io/listenbrainz'">ListenBrainz</a></p>
-        </div>
+      <div class="section">
+        <h2>Links</h2>
+        <p>Check out my other profiles:</p>
+        <p>
+          <a
+            href="#"
+            class="redirect-link"
+            onclick="window.location.href='https://deafthing.github.io/pronouns'"
+            >Pronouns Page</a
+          >
+        </p>
+        <p>
+          <a
+            href="#"
+            class="redirect-link"
+            onclick="window.location.href='https://deafthing.github.io/listenbrainz'"
+            >ListenBrainz</a
+          >
+        </p>
+      </div>
 
-        <div class="footer">
-            <p>Thanks for stopping by! 💜</p>
-            <p>Built with love and probably too much coffee (well, milk in my case)</p>
-        </div>
+      <div class="footer">
+        <p>Thanks for stopping by! 💜</p>
+        <p>
+          Built with love and probably too much coffee (well, milk in my case)
+        </p>
+      </div>
     </div>
 
     <script>
-        function updateAge() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            const currentMonth = now.getMonth(); // 0-indexed
-            const currentDay = now.getDate();
-            
-            // Birth year (assuming you're currently 20 and it's 2025)
-            const birthYear = 2004;
-            
-            let age = currentYear - birthYear;
-            
-            // If birthday hasn't happened yet this year, subtract 1
-            if (currentMonth < 6 || (currentMonth === 6 && currentDay < 20)) { // July 20th = month 6, day 20
-                age--;
-            }
-            
-            document.getElementById('age').textContent = age;
+      function updateAge() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth(); // 0-indexed
+        const currentDay = now.getDate();
+
+        // Birth year (assuming you're currently 20 and it's 2025)
+        const birthYear = 2004;
+
+        let age = currentYear - birthYear;
+
+        // If birthday hasn't happened yet this year, subtract 1
+        if (currentMonth < 6 || (currentMonth === 6 && currentDay < 20)) {
+          // July 20th = month 6, day 20
+          age--;
         }
 
-        function updateTimer() {
-            const now = new Date();
-            const options = {
-                timeZone: 'America/New_York',
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            };
-            const timeString = now.toLocaleTimeString('en-US', options);
-            document.getElementById('timer').textContent = timeString;
+        document.getElementById("age").textContent = age;
+      }
+
+      function updateTimer() {
+        const now = new Date();
+        const options = {
+          timeZone: "America/New_York",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        };
+        const timeString = now.toLocaleTimeString("en-US", options);
+        document.getElementById("timer").textContent = timeString;
+      }
+
+      function updateBirthdayCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth();
+        const currentDay = now.getDate();
+
+        // July 20th of current year
+        let birthday = new Date(currentYear, 6, 20); // Month is 0-indexed
+
+        // Check if today IS the birthday (July 20th)
+        const isBirthday = (currentMonth === 6 && currentDay === 20);
+
+        const countdownElement = document.getElementById("birthday-countdown");
+
+        if (isBirthday) {
+          // It's the birthday! Show celebration all day
+          countdownElement.textContent = "🎉 Happy Birthday! 🎉";
+          countdownElement.classList.add("birthday-today");
+          return;
+        } else {
+          // Remove birthday class if it's not the birthday
+          countdownElement.classList.remove("birthday-today");
         }
 
-        function updateBirthdayCountdown() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            
-            // July 20th of current year
-            let birthday = new Date(currentYear, 6, 20); // Month is 0-indexed
-            
-            // If birthday has passed this year, use next year's birthday
-            if (now > birthday) {
-                birthday = new Date(currentYear + 1, 6, 20);
-            }
-            
-            const timeDiff = birthday - now;
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-            
-            // Calculate color based on days remaining (365 days = red, 0 days = green)
-            const maxDays = 365;
-            const progress = Math.max(0, Math.min(1, (maxDays - days) / maxDays));
-            
-            // Color interpolation from red to green
-            const red = Math.floor(255 * (1 - progress));
-            const green = Math.floor(255 * progress);
-            const blue = 0;
-            
-            // Create gradient colors
-            const color1 = `rgb(${red}, ${green}, ${blue})`;
-            const color2 = `rgb(${Math.floor(red * 0.8)}, ${Math.floor(green * 0.8)}, ${blue})`;
-            
-            // Update CSS custom properties
-            document.documentElement.style.setProperty('--countdown-color-1', color1);
-            document.documentElement.style.setProperty('--countdown-color-2', color2);
-            
-            const countdownElement = document.getElementById('birthday-countdown');
-            countdownElement.style.borderColor = color1;
-            
-            // Update countdown text
-            if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-                countdownElement.textContent = '🎉 Happy Birthday! 🎉';
-            } else if (days === 0) {
-                countdownElement.textContent = `🎂 Birthday in ${hours}h ${minutes}m ${seconds}s!`;
-            } else {
-                countdownElement.textContent = `🎂 Birthday in ${days} days, ${hours}h ${minutes}m ${seconds}s!`;
-            }
+        // If birthday has passed this year, use next year's birthday
+        if (now > birthday) {
+          birthday = new Date(currentYear + 1, 6, 20);
         }
 
-        setInterval(updateTimer, 1000);
-        setInterval(updateBirthdayCountdown, 1000);
-        updateAge();
-        updateTimer();
-        updateBirthdayCountdown();
+        const timeDiff = birthday - now;
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        // Calculate color based on days remaining (365 days = red, 0 days = green)
+        const maxDays = 365;
+        const progress = Math.max(0, Math.min(1, (maxDays - days) / maxDays));
+
+        // Color interpolation from red to green
+        const red = Math.floor(255 * (1 - progress));
+        const green = Math.floor(255 * progress);
+        const blue = 0;
+
+        // Create gradient colors
+        const color1 = `rgb(${red}, ${green}, ${blue})`;
+        const color2 = `rgb(${Math.floor(red * 0.8)}, ${Math.floor(green * 0.8)}, ${blue})`;
+
+        // Update CSS custom properties
+        document.documentElement.style.setProperty(
+          "--countdown-color-1",
+          color1,
+        );
+        document.documentElement.style.setProperty(
+          "--countdown-color-2",
+          color2,
+        );
+
+        countdownElement.style.borderColor = color1;
+
+        // Update countdown text
+        if (days === 0) {
+          countdownElement.textContent = `🎂 Birthday in ${hours}h ${minutes}m ${seconds}s!`;
+        } else {
+          countdownElement.textContent = `🎂 Birthday in ${days} days, ${hours}h ${minutes}m ${seconds}s!`;
+        }
+      }
+
+      setInterval(updateTimer, 1000);
+      setInterval(updateBirthdayCountdown, 1000);
+      updateAge();
+      updateTimer();
+      updateBirthdayCountdown();
     </script>
-</body>
+  </body>
 </html>
